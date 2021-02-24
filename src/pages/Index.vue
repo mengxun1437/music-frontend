@@ -1,12 +1,15 @@
 <template>
   <div>
-    <router-view></router-view>
+      前台首页
   </div>
 </template>
 
 <script>
 export default {
-
+    name:'Index',
+    setup(){
+        
+    }
 }
 </script>
 

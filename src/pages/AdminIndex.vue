@@ -1,12 +1,12 @@
 <template>
   <div>
-    <router-view></router-view>
+      后台首页
   </div>
 </template>
 
 <script>
 export default {
-
+    name:'AdminIndex'
 }
 </script>
 

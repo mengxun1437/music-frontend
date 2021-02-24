@@ -1,12 +1,12 @@
 <template>
   <div>
-    <router-view></router-view>
+     后台登录界面
   </div>
 </template>
 
 <script>
 export default {
-
+    name:'AdminLogin'
 }
 </script>
 
