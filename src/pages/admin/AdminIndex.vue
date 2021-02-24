@@ -1,12 +1,12 @@
 <template>
   <div>
-     后台登录界面
+      后台首页
   </div>
 </template>
 
 <script>
 export default {
-    name:'AdminLogin'
+    name:'AdminIndex'
 }
 </script>
 

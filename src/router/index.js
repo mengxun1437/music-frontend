@@ -11,17 +11,17 @@ const routes = [
     {
         path: '/index',
         name: 'Index',
-        component: () => import('../pages/Index.vue')
+        component: () => import('../pages/main/Index.vue')
     },
     {
         path:'/adminLogin',
         name:'AdminLogin',
-        component:() => import('../pages/AdminLogin.vue')
+        component:() => import('../pages/admin/AdminLogin.vue')
     },
     {
         path:'/adminIndex',
         name:'AdminIndex',
-        component:() => import('../pages/AdminIndex.vue')
+        component:() => import('../pages/admin/AdminIndex.vue')
     }
 
 ]
