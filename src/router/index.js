@@ -23,7 +23,6 @@ const routes = [
         name:'AdminIndex',
         component:() => import('../pages/admin/AdminIndex.vue')
     }
-
 ]
 
 const router = createRouter({

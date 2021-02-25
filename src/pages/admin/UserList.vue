@@ -1,12 +1,12 @@
 <template>
   <div>
-      后台首页
+      用户管理界面
   </div>
 </template>
 
 <script>
 export default {
-    name:'AdminIndex'
+    name:'UserList'
 }
 </script>
 
