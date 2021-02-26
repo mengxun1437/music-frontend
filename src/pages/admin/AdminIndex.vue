@@ -68,7 +68,7 @@
           </el-row>
         </el-header>
         <el-main>
-          <div v-if="currentTab === ''">Welcome to Management Page</div>
+          <div v-if="currentTab === ''">Welcome to Music Management Page</div>
           <div v-else>
             <div v-if="currentTab == 'Admin Account Apply'">
               <admin-account-apply></admin-account-apply>
