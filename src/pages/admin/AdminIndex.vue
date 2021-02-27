@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <el-container>
       <el-aside> 
         <el-menu
@@ -23,9 +23,6 @@
                 <el-menu-item-group>
                   <el-menu-item index="1-1-1" @click="setCurrentTab($event)"
                     >Admin Account Apply</el-menu-item
-                  >
-                  <el-menu-item index="1-1-2" @click="setCurrentTab($event)"
-                    >Admin List</el-menu-item
                   >
                 </el-menu-item-group>
               </el-submenu>
@@ -73,9 +70,6 @@
             <div v-if="currentTab == 'Admin Account Apply'">
               <admin-account-apply></admin-account-apply>
             </div>
-            <div v-else-if="currentTab == 'Admin List'">
-              <admin-list></admin-list>
-            </div>
             <div v-else-if="currentTab == 'User List'">
               <user-list></user-list>
             </div>
@@ -95,7 +89,6 @@
 <script>
 import { reactive, toRefs } from "vue";
 import AdminAccountApply from "./AdminAccountApply";
-import AdminList from './AdminList';
 import UserList from "./UserList";
 import UploadMusic from "./UploadMusic";
 import MusicList from "./MusicList";
@@ -104,7 +97,6 @@ export default {
   name: "AdminIndex",
   components: {
     AdminAccountApply,
-    AdminList,
     UserList,
     UploadMusic,
     MusicList
@@ -117,10 +109,6 @@ export default {
         {
           index: "1-1-1",
           item: "Admin Account Apply",
-        },
-        {
-          index: "1-1-2",
-          item: "Admin List",
         },
         {
           index: "1-2-1",
@@ -154,6 +142,11 @@ export default {
 </script>
 
 <style>
+.body{
+  margin: 0 0;
+  padding: 0 0;
+}
+
 .current-tab {
   color: royalblue;
   font-weight: 900;
