@@ -18,6 +18,7 @@ function GroupArray(array, subGroupLength) {
   return newArray
 }
 
+
 export {
     GroupArray
 }
