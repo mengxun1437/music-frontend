@@ -112,7 +112,7 @@ export default {
       },
       searchByNickName(){
         const search = state.search
-        console.log('search:',search)
+        // console.log('search:',search)
         state.tableData = state.allTableData.filter(data => !search || data.nickName.toLowerCase().includes(search.toLowerCase()))
         this.pageSetting()
       }

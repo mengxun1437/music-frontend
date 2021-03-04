@@ -42,16 +42,16 @@
               :multiple="false"
               accept="image/png,image/jpeg,image/jpg"
               list-type="picture"
-              :on-change="handleAvatarChangeFileList"
-              :on-remove="handleAvatarClearFileList"
+              :on-change="handleCoverChangeFileList"
+              :on-remove="handleCoverClearFileList"
             >
               <!-- :on-change="handleChangeFileList(file,fileList)" -->
               <el-button
                 type="primary"
-                v-if="music.avatar.fileList.length === 0"
+                v-if="music.cover.fileList.length === 0"
                 >Select Music Cover <i class="el-icon-upload el-icon--right"></i
               ></el-button>
-              <template #tip v-if="music.avatar.fileList.length === 0">
+              <template #tip v-if="music.cover.fileList.length === 0">
                 <div class="el-upload__tip">只能上传 jpg/png/jpeg 文件</div>
               </template>
             </el-upload>
@@ -114,7 +114,7 @@ export default {
         name: "",
         author: "",
         type: [],
-        avatar: {
+        cover: {
           fileList: [],
         },
         file:{
@@ -199,18 +199,18 @@ export default {
     });
 
     const methods = {
-      handleAvatarChangeFileList(file) {
+      handleCoverChangeFileList(file) {
         //  console.log(file,fileList)
         var tmpFile = {
           name: file.name,
           url: file.url,
         };
 
-        state.music.avatar.fileList.push(tmpFile);
+        state.music.cover.fileList.push(tmpFile);
       },
-      handleAvatarClearFileList() {
+      handleCoverClearFileList() {
         // console.log(file,fileList)
-        state.music.avatar.fileList = [];
+        state.music.cover.fileList = [];
       },
 
       handleMusicChangeFileList(file) {
@@ -237,8 +237,8 @@ export default {
         }else if(state.music.type.length === 0){
           ElMessage.warning("Music Type Format Error!")
           return false
-        }else if(state.music.avatar.fileList.length === 0){
-          ElMessage.warning("Music Avatar Format Error!")
+        }else if(state.music.cover.fileList.length === 0){
+          ElMessage.warning("Music cover Format Error!")
           return false
         }else if(state.music.file.fileList.length === 0){
           ElMessage.warning("Music File Format Error!")
@@ -251,7 +251,7 @@ export default {
         if(!this.checkBeforeSubmit()){
           return
         }
-        
+
       }
     };
 
