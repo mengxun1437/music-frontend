@@ -37,25 +37,55 @@
         <el-col :span="12">
           <el-form-item label="MusicCover">
             <el-upload
-            :auto-upload="false"
-            limit="1"
-            accept="mp3"
+              :auto-upload="false"
+              limit="1"
+              :multiple="false"
+              accept="image/png,image/jpeg,image/jpg"
+              list-type="picture"
+              :on-change="handleAvatarChangeFileList"
+              :on-remove="handleAvatarClearFileList"
             >
-              <el-button type="primary"
+              <!-- :on-change="handleChangeFileList(file,fileList)" -->
+              <el-button
+                type="primary"
+                v-if="music.avatar.fileList.length === 0"
                 >Select Music Cover <i class="el-icon-upload el-icon--right"></i
               ></el-button>
+              <template #tip v-if="music.avatar.fileList.length === 0">
+                <div class="el-upload__tip">只能上传 jpg/png/jpeg 文件</div>
+              </template>
             </el-upload>
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="MusicFile">
-            <el-upload>
-              <el-button type="primary"
+            <el-upload
+              :auto-upload="false"
+              limit="1"
+              :multiple="false"
+              accept=".mp3"
+              list-type="text"
+              :on-change="handleMusicChangeFileList"
+              :on-remove="handleMusicClearFileList"
+            >
+              <el-button type="primary" v-if="music.file.fileList.length === 0"
                 >Select Music File <i class="el-icon-upload el-icon--right"></i
               ></el-button>
+              <template #tip v-if="music.file.fileList.length === 0">
+                <div class="el-upload__tip">只能上传 mp3 文件</div>
+              </template>
             </el-upload>
           </el-form-item>
         </el-col>
+      </el-row>
+
+      <el-row :gutter="20" style="margin-top:50px">
+        <el-col :span="20">
+
+        </el-col>
+        <el-col :span="4">
+          <el-button type="primary" @click="upLoadMusic()">Upload Now</el-button>
+        </el-col> 
       </el-row>
     </el-form>
 
@@ -74,6 +104,8 @@
 
 <script>
 import { reactive, toRefs } from "vue";
+import {ElMessage} from 'element-plus'
+
 export default {
   name: "UploadMusic",
   setup() {
@@ -82,6 +114,12 @@ export default {
         name: "",
         author: "",
         type: [],
+        avatar: {
+          fileList: [],
+        },
+        file:{
+          fileList: []
+        }
       },
       musicTypes: [
         {
@@ -160,7 +198,62 @@ export default {
       showMusicTypesDialog: false,
     });
 
-    const methods = {};
+    const methods = {
+      handleAvatarChangeFileList(file) {
+        //  console.log(file,fileList)
+        var tmpFile = {
+          name: file.name,
+          url: file.url,
+        };
+
+        state.music.avatar.fileList.push(tmpFile);
+      },
+      handleAvatarClearFileList() {
+        // console.log(file,fileList)
+        state.music.avatar.fileList = [];
+      },
+
+      handleMusicChangeFileList(file) {
+        //  console.log(file,fileList)
+        var tmpFile = {
+          name: file.name,
+          url: file.url,
+        };
+
+        state.music.file.fileList.push(tmpFile);
+      },
+      handleMusicClearFileList() {
+        // console.log(file,fileList)
+        state.music.file.fileList = [];
+      },
+
+      checkBeforeSubmit(){
+        if(state.music.name.length === 0){
+          ElMessage.warning("Music Name Format Error!");
+          return false;
+        }else if(state.music.author.length === 0){
+          ElMessage.warning("Music Author Format Error!")
+          return false
+        }else if(state.music.type.length === 0){
+          ElMessage.warning("Music Type Format Error!")
+          return false
+        }else if(state.music.avatar.fileList.length === 0){
+          ElMessage.warning("Music Avatar Format Error!")
+          return false
+        }else if(state.music.file.fileList.length === 0){
+          ElMessage.warning("Music File Format Error!")
+          return false
+        }
+        return true
+      },
+
+      upLoadMusic(){
+        if(!this.checkBeforeSubmit()){
+          return
+        }
+        
+      }
+    };
 
     return {
       ...toRefs(state),
